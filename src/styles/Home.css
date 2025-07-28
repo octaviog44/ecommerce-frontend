@@ -7,233 +7,426 @@
 
 .home-container {
   width: 100%;
-  max-width: 100%; /* Cambiado de 1200px a 100% */
+  max-width: 100%;
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
-/* Header */
+/* Estilos del encabezado */
 .header {
+  background-color: black;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #000;
-  color: white;
-  width: 100%;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .logo {
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-.mobile-menu-button {
-  display: block;
   font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.header-right {
-  display: none;
-}
-
-.signin-button {
-  background-color: #ff4081;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  text-decoration: none;
   font-weight: bold;
-}
-
-/* Hero Section */
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.hero-section h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #000;
 }
 
 .search-form {
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 2rem;
+  display: flex;
 }
 
-.search-input {
+.search-form input {
+  padding: 0.5rem;
+  border: none;
+}
+
+.search-form button {
+  padding: 0.5rem 1rem;
+  background-color: yellow; /* Amarillo como en la foto */
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.login-link {
+  color: pink;
+  text-decoration: none;
+}
+
+/* Menú móvil como sidebar */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: black;
+  padding: 2rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  z-index: 1000;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Productos */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 columna en móvil */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.product-card .price {
+  color: pink; /* Precios en rosa */
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas en escritorio */
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .search-form, .login-link {
+    display: block;
+  }
+}
+
+.logo-container h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+.desktop-nav a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.mobile-nav {
+  display: block;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  padding: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
   width: 100%;
+  background-color: #333;
+  border-radius: 3px;
+}
+
+/* Estilos del menú de hamburguesa */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.hamburger-menu.open {
+  transform: translateX(0);
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1rem;
+  color: white;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: auto;
+}
+
+.menu-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.menu-footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+.site-url {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: #ff3b30;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.session-status {
+  margin-top: 1rem;
+  background-color: #ffeb3b;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.status-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+}
+
+.arrow-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+/* Estilos de la sección hero */
+.hero {
+  background-color: #f5f5f5;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.search-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-form input {
+  flex: 1;
   padding: 0.8rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 4px 0 0 4px;
   font-size: 1rem;
 }
 
-.search-button {
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.8rem;
-  background-color: #1976d2;
+.search-form button {
+  padding: 0.8rem 1.5rem;
+  background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0 4px 4px 0;
   cursor: pointer;
   font-size: 1rem;
 }
 
-/* Featured Products */
+/* Estilos de productos destacados */
 .featured-products {
   padding: 2rem 1rem;
-  background-color: #ff8a80;
 }
 
 .featured-products h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  color: white;
   text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
 .products-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .product-card {
-  background-color: #f5f5f5;
+  border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
+  background-color: white;
 }
 
-.product-image {
-  height: 200px;
-  overflow: hidden;
-}
-
-.product-image img {
+.product-card img {
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
 }
 
-.product-info {
+.product-card h3 {
   padding: 1rem;
-  background-color: #ff4081;
-  color: white;
-}
-
-.product-info h3 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.product-price {
-  font-weight: bold;
   font-size: 1.2rem;
 }
 
-/* Footer */
-.footer {
-  background-color: #000;
+.product-card .price {
+  padding: 0 1rem;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.product-card .add-to-cart {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4caf50;
   color: white;
-  padding: 2rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
 }
 
-.footer-links {
+/* Estilos del footer */
+.home-container {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 2rem;
 }
 
-.footer-column {
+.featured-products {
+  flex: 1; /* Para empujar el footer al fondo */
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 }
 
-.footer-column h4 {
-  margin-bottom: 0.5rem;
-}
-
-.footer-column a {
+.footer-left a {
   color: white;
   text-decoration: none;
+  margin: 0.5rem 0;
 }
 
-.copyright {
+.footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  margin-left: 1rem;
+}
+
+.footer p {
+  width: 100%;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
   font-size: 0.8rem;
 }
 
-/* Media Queries para versión desktop */
+/* Media queries para responsive */
 @media (min-width: 768px) {
-  .mobile-menu-button {
+  .desktop-nav {
+    display: flex;
+  }
+  
+  .mobile-nav {
     display: none;
   }
-
-  .header-right {
-    display: block;
-  }
-
-  .logo-container {
-    width: auto;
-  }
-
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-
-  .search-button {
-    width: auto;
-    margin-top: 0;
-    margin-left: 0.5rem;
-  }
-
-  .search-form {
-    display: flex;
-    align-items: center;
-  }
-
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-links {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 1024px) {
+  
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
-  .hero-section {
-    padding: 4rem 1rem;
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
   }
+}
+
+/* Estilos para formularios de SignIn y Profile */
+.signin-form, .profile-form {
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.signin-form h1, .profile-form h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.signin-form div, .profile-form div {
+  margin-bottom: 1rem;
+}
+
+.signin-form label, .profile-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.signin-form input, .profile-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid black; /* Borde negro como en la imagen */
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.signin-form button, .profile-form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: yellow; /* Amarillo como en la imagen */
+  color: black;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.signin-form button:hover, .profile-form button:hover {
+  background-color: #ffd700;
+}
+
+.auth-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.auth-links a {
+  color: pink;
+  text-decoration: none;
 }

@@ -1,10 +1,8 @@
-
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import api from '../api';
-import '../styles/Home.css';
+import '../styles/Home.css'; // Reutiliza estilos
 import type { AxiosResponse, AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom'; // Nueva importación
 
 interface Product {
   id: number;
@@ -13,38 +11,35 @@ interface Product {
   image: string;
 }
 
-function Home() {
+function SearchResults() {
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(query);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     api.get('/products')
-      .then((response: AxiosResponse) => {
-        setProducts(response.data || []);
-        setFilteredProducts(response.data || []);
+      .then((response: AxiosResponse<Product[]>) => {
+        const data = response.data || [];
+        setProducts(data);
+        const results = data.filter(product => product.title.toLowerCase().includes(query.toLowerCase()));
+        setFilteredProducts(results);
       })
       .catch((error: AxiosError) => {
         console.error('Error fetching products:', error);
       });
-  }, []);
+  }, [query]);
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const query = searchQuery.toLowerCase();
-    const results = products.filter(product => product.title.toLowerCase().includes(query));
-    if (results.length > 0) {
-      navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
-    } else {
-      setFilteredProducts(results);
-      setHasSearched(true); // Manejar si no hay resultados, mostrar en Home
-    }
+    const results = products.filter(product => product.title.toLowerCase().includes(searchQuery.toLowerCase()));
+    setFilteredProducts(results);
   };
 
   const toggleMenu = () => {
+    console.log('Toggle menu called, current state:', menuOpen);
     setMenuOpen(!menuOpen);
   };
 
@@ -53,17 +48,10 @@ function Home() {
       <header className="header">
         <button className="hamburger" onClick={toggleMenu}>☰</button>
         <div className="logo">Compralo</div>
-        {hasSearched && (
-          <form className="search-form" onSubmit={handleSearch}>
-            <input 
-              type="text" 
-              placeholder="Buscar" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit">Buscar</button>
-          </form>
-        )}
+        <form className="search-form" onSubmit={handleSearch}>
+          <input type="text" placeholder="Buscar" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+          <button type="submit">Buscar</button>
+        </form>
         <a href="/signin" className="login-link">Ingresar</a>
       </header>
 
@@ -72,28 +60,12 @@ function Home() {
           <button className="close-menu" onClick={toggleMenu}>×</button>
           <a href="/">Inicio</a>
           <a href="/profile">Mi perfil</a>
+          <a href="/search">Buscar</a>
         </nav>
       )}
 
-      {!hasSearched && (
-        <section className="hero">
-          <div className="hero-content">
-            <h1>Encuentra los mejores productos</h1>
-            <form className="search-form" onSubmit={handleSearch}>
-              <input 
-                type="text" 
-                placeholder="Buscar productos..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button type="submit">Buscar</button>
-            </form>
-          </div>
-        </section>
-      )}
-
       <section className="featured-products">
-        <h2>{hasSearched ? 'Productos encontrados' : 'Productos Destacados'}</h2>
+        <h2>Productos encontrados</h2>
         <div className="products-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -107,7 +79,7 @@ function Home() {
               </Link>
             ))
           ) : (
-            <p>{hasSearched ? 'No se encontraron productos.' : 'Cargando productos...'}</p>
+            <p>No se encontraron productos.</p>
           )}
         </div>
       </section>
@@ -128,4 +100,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default SearchResults;

@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 
-function Profile() {
-  const [fullName, setFullName] = useState('Juan Pérez');
-  const [phone, setPhone] = useState('123456789');
-  const [email, setEmail] = useState('juan@example.com');
+function SignUp() {
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Lógica para guardar cambios (puedes integrar con API)
     console.log({ fullName, phone, email });
   };
 
@@ -31,56 +30,40 @@ function Profile() {
         <button className="hamburger" onClick={toggleMenu}>☰</button>
         <div className="logo">Compralo</div>
         <form className="search-form" onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="Buscar productos..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <input type="text" placeholder="Buscar productos..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
           <button type="submit">Buscar</button>
         </form>
-        <a href="/signin" className="login-link">Ingresar</a>
+        <div className="auth-links">
+          <a href="/signup">Registrarse</a>
+          <a href="/signin">Ingresar</a>
+        </div>
       </header>
 
-      <nav className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <button className="close-menu" onClick={toggleMenu}>×</button>
-        <a href="/">Inicio</a>
-        <a href="/profile">Mi perfil</a>
-        <a href="/search">Buscar</a>
-        <a href="/signin">Login</a>
-      </nav>
+      {menuOpen && (
+        <nav className="mobile-menu open">
+          <button className="close-menu" onClick={toggleMenu}>×</button>
+          <a href="/">Inicio</a>
+          <a href="/profile">Mi perfil</a>
+          <a href="/search">Buscar</a>
+        </nav>
+      )}
 
-      <section className="profile-form">
-        <h1>Perfil</h1>
+      <section className="signin-form">
+        <h1>Registrarse</h1>
         <form onSubmit={handleSubmit}>
           <div>
             <label>Nombre completo:</label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
+            <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
           </div>
           <div>
             <label>Teléfono:</label>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
+            <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required />
           </div>
           <div>
             <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
-          <button type="submit">Guardar</button>
+          <button type="submit">Registrarse</button>
         </form>
       </section>
 
@@ -100,5 +83,4 @@ function Profile() {
   );
 }
 
-export default Profile;
-  
+export default SignUp;

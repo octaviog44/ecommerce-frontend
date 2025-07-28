@@ -1,0 +1,156 @@
+.item-detail-container {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-form {
+  display: flex;
+}
+
+.search-form input {
+  padding: 0.5rem;
+  border: none;
+}
+
+.search-form button {
+  padding: 0.5rem 1rem;
+  background-color: blue; /* Ajustado a azul como en la foto */
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.product-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  padding-bottom: 10rem; /* Agregar espacio blanco grande debajo */
+  background-color: white;
+}
+
+/* Estilos para menú móvil */
+.hamburger {
+  display: none; /* Oculto en escritorio */
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: pink; /* Color rosa como en la foto */
+  padding: 2rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.mobile-menu a {
+  display: block;
+  margin: 1rem 0;
+  color: white;
+  text-decoration: none;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* Media query para móvil */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .search-form, .login-link {
+    display: none; /* Ocultar en móvil, mostrar en menú */
+  }
+
+  .mobile-menu {
+    display: block; /* Mostrar cuando menuOpen */
+  }
+
+  .product-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image {
+    width: 100%;
+  }
+
+  .product-info {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.product-image {
+  width: 40%;
+  height: auto;
+}
+
+.product-info {
+  width: 55%;
+}
+
+.product-info h1 {
+  font-size: 2rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.buy-button {
+  background-color: lightblue;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.description {
+  margin-top: 1rem;
+}
+
+.footer {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+}
+
+.icons {
+  margin-left: 1rem;
+}
