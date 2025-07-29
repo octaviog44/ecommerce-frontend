@@ -3,16 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 
 function SignIn() {
+  const [step, setStep] = useState(1); // Paso 1: Email, Paso 2: Código
+  const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Lógica de login con código
-    console.log({ code });
-  };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -21,6 +17,21 @@ function SignIn() {
     if (searchQuery.trim()) {
       navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
     }
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Simular envío de código al email
+    console.log('Enviando código a:', email);
+    setStep(2);
+  };
+
+  const handleCodeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Simular verificación exitosa
+    localStorage.setItem('loggedInEmail', email);
+    console.log('Login exitoso para:', email);
+    navigate('/profile');
   };
 
   return (
@@ -47,15 +58,25 @@ function SignIn() {
         </nav>
       )}
 
-      <section className="signin-form">
+      <section className="signin-form" style={{ flex: 1 }}> {/* Añadir flex:1 para que ocupe espacio */}
         <h1>Ingresar</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Código:</label>
-            <input type="text" value={code} onChange={(e) => setCode(e.target.value)} required />
-          </div>
-          <button type="submit">Ingresar</button>
-        </form>
+        {step === 1 ? (
+          <form onSubmit={handleEmailSubmit}>
+            <div>
+              <label>Email:</label>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            </div>
+            <button type="submit">Enviar Código</button>
+          </form>
+        ) : (
+          <form onSubmit={handleCodeSubmit}>
+            <div>
+              <label>Código:</label>
+              <input type="text" value={code} onChange={(e) => setCode(e.target.value)} required />
+            </div>
+            <button type="submit">Ingresar</button>
+          </form>
+        )}
       </section>
 
       <footer className="footer">
@@ -68,7 +89,7 @@ function SignIn() {
           <span>Redes</span>
           <span className="icons">🛒 My e-commerce</span>
         </div>
-        <p>&copy; 2023 E-Shop. Todos los derechos reservados.</p>
+        <p>&copy; 2025 E-Shop. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

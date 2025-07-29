@@ -12,7 +12,11 @@ function SignUp() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ fullName, phone, email });
+    const userData = { fullName, phone, email };
+    localStorage.setItem('userData', JSON.stringify(userData));
+    console.log('Usuario registrado:', userData);
+    // Opcional: redirigir a login
+    navigate('/signin');
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -48,7 +52,7 @@ function SignUp() {
         </nav>
       )}
 
-      <section className="signin-form">
+      <section className="signin-form" style={{ flex: 1 }}> {/* Añadir flex:1 para que ocupe espacio */}
         <h1>Registrarse</h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -77,7 +81,7 @@ function SignUp() {
           <span>Redes</span>
           <span className="icons">🛒 My e-commerce</span>
         </div>
-        <p>&copy; 2023 E-Shop. Todos los derechos reservados.</p>
+        <p>&copy; 2025 E-Shop. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

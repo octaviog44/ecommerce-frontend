@@ -94,7 +94,7 @@ function SearchResults() {
           <span>Redes</span>
           <span className="icons">🛒 My e-commerce</span>
         </div>
-        <p>&copy; 2023 E-Shop. Todos los derechos reservados.</p>
+        <p>&copy; 2025 E-Shop. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

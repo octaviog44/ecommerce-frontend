@@ -1,14 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 
 function Profile() {
-  const [fullName, setFullName] = useState('Juan Pérez');
-  const [phone, setPhone] = useState('123456789');
-  const [email, setEmail] = useState('juan@example.com');
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedInEmail = localStorage.getItem('loggedInEmail');
+    if (loggedInEmail) {
+      const storedData = localStorage.getItem('userData');
+      if (storedData) {
+        const userData = JSON.parse(storedData);
+        if (userData.email === loggedInEmail) {
+          setFullName(userData.fullName);
+          setPhone(userData.phone);
+          setEmail(userData.email);
+        } else {
+          // Email no coincide, posible error
+          navigate('/signin');
+        }
+      } else {
+        navigate('/signin');
+      }
+    } else {
+      navigate('/signin');
+    }
+  }, [navigate]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -94,10 +116,11 @@ function Profile() {
           <span>Redes</span>
           <span className="icons">🛒 My e-commerce</span>
         </div>
-        <p>&copy; 2023 E-Shop. Todos los derechos reservados.</p>
+        <p>&copy; 2025 E-Shop. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
+  // En el JSX, los inputs usarán los states cargados
 }
 
 export default Profile;
