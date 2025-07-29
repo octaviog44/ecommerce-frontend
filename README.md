@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# 🛒 E-commerce Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es el frontend de un e-commerce desarrollado con **React + Vite**, basado en un diseño provisto por el curso.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades implementadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Navegación entre rutas con React Router DOM
+- Diseño responsive (adaptado a mobile y desktop)
+- Páginas completas:
+  - `/` Página de inicio con productos destacados
+  - `/signin` Formulario de login
+  - `/profile` Vista del perfil del usuario
+  - `/search?q=` Página de búsqueda de productos
+  - `/item/{itemId}` Detalle de producto
+  - `/checkout/{itemId}` Inicia el proceso de compra
+  - `/thanks` Página de agradecimiento post-pago
+  - `/logout` Cierra sesión y redirige a la home
 
-## Expanding the ESLint configuration
+## ⚙️ Tecnologías
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + Vite
+- TypeScript
+- Axios
+- React Router DOM
+- CSS Modules / Tailwind / estilos propios
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🔗 Backend
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+El backend ya se encuentra desarrollado y desplegado. El frontend fue pensado para consumir esta API, aunque **en esta versión actual aún no está completamente integrada**.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> ✅ Está planificado integrar el backend con el frontend en una próxima versión.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📦 Cómo correr el proyecto localmente
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Cloná el repositorio:
+```bash
+git clone https://github.com/usuario/frontend-ecommerce.git
+cd frontend-ecommerce
+Instalá dependencias:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+
+Iniciá el servidor de desarrollo:
+
+
+npm run dev
+🚀 Deploy en Vercel
+Este proyecto está desplegado en Vercel. Podés verlo en:
+
+🔗 https://frontend-ecommerce.vercel.app
+
+La variable VITE_API_URL está configurada en Vercel para consumir la API correctamente.
+
+📝 Notas
+El diseño fue respetado tanto en versión mobile como desktop
+
+Se utilizó una arquitectura simple pero escalable, separando componentes reutilizables
+
+Algunas funcionalidades dinámicas (login, carrito, compra) están preparadas pero no activas por falta de integración con backend
+
+📌 Estado del proyecto
+✅ Diseño completado
+✅ Navegación funcional
