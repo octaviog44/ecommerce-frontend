@@ -24,7 +24,7 @@ Este proyecto es el frontend de un e-commerce desarrollado con **React + Vite**,
 - React Router DOM
 - CSS Modules / Tailwind / estilos propios
 
-## 🔗 Backend
+##  Backend
 
 El backend ya se encuentra desarrollado y desplegado. El frontend fue pensado para consumir esta API, aunque **en esta versión actual aún no está completamente integrada**.
 
