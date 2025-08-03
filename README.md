@@ -2,7 +2,7 @@
 
 Este proyecto es el frontend de un e-commerce desarrollado con **React + Vite**, basado en un diseño provisto por el curso.
 
-## 🚀 Funcionalidades implementadas
+##  Funcionalidades implementadas
 
 - Navegación entre rutas con React Router DOM
 - Diseño responsive (adaptado a mobile y desktop)
