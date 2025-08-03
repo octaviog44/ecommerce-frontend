@@ -16,7 +16,7 @@ Este proyecto es el frontend de un e-commerce desarrollado con **React + Vite**,
   - `/thanks` Página de agradecimiento post-pago
   - `/logout` Cierra sesión y redirige a la home
 
-## ⚙️ Tecnologías
+##  Tecnologías
 
 - React + Vite
 - TypeScript
