@@ -30,7 +30,7 @@ El backend ya se encuentra desarrollado y desplegado. El frontend fue pensado pa
 
 > ✅ Está planificado integrar el backend con el frontend en una próxima versión.
 
-## 📦 Cómo correr el proyecto localmente
+##  Cómo correr el proyecto localmente
 
 1. Cloná el repositorio:
 ```bash
