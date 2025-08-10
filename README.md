@@ -1,4 +1,4 @@
- #  E-commerce Frontend
+#  E-commerce Frontend
 
 Este proyecto es el frontend de un e-commerce desarrollado con **React + Vite**, basado en un diseño provisto por el curso.
 
